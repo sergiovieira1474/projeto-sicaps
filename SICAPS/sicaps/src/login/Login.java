@@ -8,7 +8,9 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import profissional.Profissional;
 
 /**
  *
@@ -29,6 +31,9 @@ public class Login {
     private String senha;
     private String confirmarSenha;
     private String nivel;
+    
+    @ManyToOne
+    private profissional.Profissional profissional;
 
     /**
      * @return the codigo
@@ -98,6 +103,14 @@ public class Login {
      */
     public void setNivel(String nivel) {
         this.nivel = nivel;
+    }
+
+    public Profissional getProfissional() {
+        return profissional;
+    }
+
+    public void setProfissional(Profissional profissional) {
+        this.profissional = profissional;
     }
     
 }

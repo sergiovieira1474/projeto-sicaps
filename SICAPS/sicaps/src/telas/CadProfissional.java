@@ -313,9 +313,11 @@ public class CadProfissional extends javax.swing.JDialog {
         profissional.setCNESprofissional(edtCNESprofissional.getText());
         profissional.setEstadocivilprofissional(edtCivilprofissional.getSelectedItem().toString());
         profissional.setTelefoneprofissional(edtTelefoneprofissional.getText());
-        
-    
-        
+
+        //SALVAR PROFISSIONAL
+      profissionalDAO proDao = new profissionalDAO();
+      proDao.salvar(profissional);
+         
 
         //LOGIN DO PROFISSIONAL
         Login login = new Login();
@@ -323,13 +325,12 @@ public class CadProfissional extends javax.swing.JDialog {
         login.setSenha(senhaprofissional.getText());
         login.setConfirmarSenha(confirmarprofissional.getText());
         login.setNivel(nivelprofissional.getSelectedItem().toString());
+        login.setProfissional(profissional);
         
       //SALVAR LOGIN
       LoginDAO logDAO = new LoginDAO();
       logDAO.salvar(login);
-        //SALVAR PROFISSIONAL
-      profissionalDAO proDao = new profissionalDAO();
-      proDao.salvar(profissional);
+        
       
        
       JOptionPane.showMessageDialog(edtNomeprofissional, 

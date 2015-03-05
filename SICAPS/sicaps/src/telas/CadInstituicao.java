@@ -21,7 +21,7 @@ public class CadInstituicao extends javax.swing.JDialog {
      * Creates new form cadProfissional
      */
     Instituicao instituicao;
-    Instituicao pesquisacampos = new Instituicao();
+    //Instituicao pesquisacampos = new Instituicao();
     
     public CadInstituicao() {
         setLocationRelativeTo(null);
@@ -256,16 +256,19 @@ public class CadInstituicao extends javax.swing.JDialog {
 
     private void SalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SalvarActionPerformed
         // TODO add your handling code here:
-         Instituicao in = new Instituicao();
-       in.setNomeInstituicao(edtNome.getText());
-       in.setNomeFantasia(edtFantasia.getText());  
-       in.setEndereco(edtEndereco.getText());
-       in.setNum(Integer.parseInt(edtNum.getText()));
-       in.setBairro(edtBairro.getText());
-       in.setCnes(Integer.parseInt(edtCNES.getText()));
-       in.setEstado(edtUF.getSelectedItem().toString());
-       in.setFundacao(edtData.getText());
-       in.setTelefone(edtTelefone.getText());
+         
+        if(instituicao==null){
+            instituicao = new Instituicao();
+        }
+       instituicao.setNomeInstituicao(edtNome.getText());
+       instituicao.setNomeFantasia(edtFantasia.getText());  
+       instituicao.setEndereco(edtEndereco.getText());
+       instituicao.setNum(Integer.parseInt(edtNum.getText()));
+       instituicao.setBairro(edtBairro.getText());
+       instituicao.setCnes(Integer.parseInt(edtCNES.getText()));
+       instituicao.setEstado(edtUF.getSelectedItem().toString());
+       instituicao.setFundacao(edtData.getText());
+       instituicao.setTelefone(edtTelefone.getText());
       
         try {
                 if (!edtData.getText().replaceAll("/", "").isEmpty()) {
@@ -280,10 +283,10 @@ public class CadInstituicao extends javax.swing.JDialog {
             }
 
        InstituicaoDAO pDao = new InstituicaoDAO();
-       pDao.salvar(in);
+       pDao.salvar(instituicao);
        
        JOptionPane.showMessageDialog(edtNome, 
-                "Instituição : "+in.getNomeInstituicao()+
+                "Instituição : "+instituicao.getNomeInstituicao()+
                 ", Cadastrada com Sucesso!");
         edtNome.setText("");
         edtFantasia.setText("");
@@ -311,10 +314,10 @@ public class CadInstituicao extends javax.swing.JDialog {
             Instituicao insti= new Instituicao();
             int codigo = (int)tbListarInstituicao.getValueAt(linha, 0);
             InstituicaoDAO instdao = new InstituicaoDAO();
-            insti=instdao.pesquisaCodigo(codigo);
-            this.instituicao=pesquisacampos;
-            edtBairro.setText(pesquisacampos.getBairro());
-            edtEndereco.setText(pesquisacampos.getEndereco());
+            instituicao=instdao.pesquisaCodigo(codigo);
+            edtBairro.setText(instituicao.getBairro());
+            edtEndereco.setText(instituicao.getEndereco());
+            edtNome.setText(instituicao.getNomeFantasia());
         }
         
     }//GEN-LAST:event_editarActionPerformed
