@@ -27,7 +27,12 @@ public class InstituicaoDAO {
         sessao = HibernateUtil.getSessionFactory()
                 .openSession();
         transacao = sessao.beginTransaction();
-        sessao.save(instituicao);
+        if(instituicao.getIdInstituicao()==0){
+            sessao.save(instituicao);
+        } else {
+            sessao.update(instituicao);
+        }
+        
         transacao.commit();
         sessao.close();
     }
