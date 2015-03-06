@@ -92,11 +92,9 @@ public class CadProfissional extends javax.swing.JDialog {
         jPanel2.add(nivelprofissional, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 330, 190, -1));
 
         confirmarprofissional.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
-        confirmarprofissional.setText("jPasswordField2");
         jPanel2.add(confirmarprofissional, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 360, 150, -1));
 
         senhaprofissional.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
-        senhaprofissional.setText("jPasswordField1");
         jPanel2.add(senhaprofissional, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 320, 150, -1));
 
         jLabel8.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N

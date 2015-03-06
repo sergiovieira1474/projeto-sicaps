@@ -237,6 +237,11 @@ public class CadTriagemAdmissao extends javax.swing.JFrame {
         jPanel3.add(jLabel35, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 190, -1, -1));
 
         edtNCartaoSUS.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
+        edtNCartaoSUS.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                edtNCartaoSUSActionPerformed(evt);
+            }
+        });
         jPanel3.add(edtNCartaoSUS, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 190, 140, -1));
 
         jLabel36.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
@@ -391,7 +396,7 @@ public class CadTriagemAdmissao extends javax.swing.JFrame {
         jPanel4.add(jLabel32, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 130, -1, -1));
 
         try {
-            edtTelefoneResponsavel.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("(##)###-###")));
+            edtTelefoneResponsavel.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("(##)####-####")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
@@ -518,6 +523,10 @@ public class CadTriagemAdmissao extends javax.swing.JFrame {
       
        
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void edtNCartaoSUSActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_edtNCartaoSUSActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_edtNCartaoSUSActionPerformed
 
     /**
      * @param args the command line arguments
