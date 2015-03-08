@@ -178,6 +178,10 @@ public class Instituicao {
     public void setTelefone(String telefone) {
         this.telefone = telefone;
     }
+
+    public String getData() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
     
     

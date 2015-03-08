@@ -13,12 +13,14 @@ import profissional.profissionalDAO;
 
 public class CadProfissional extends javax.swing.JDialog {
 
-    /**
-     * Creates new form cadProfissional
-     */
+    
+    
+     
     public CadProfissional() {
         setLocationRelativeTo(null); 
         initComponents();
+        
+          
         
     }
 
@@ -137,6 +139,11 @@ public class CadProfissional extends javax.swing.JDialog {
             ex.printStackTrace();
         }
         edtCPFprofissional.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
+        edtCPFprofissional.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                edtCPFprofissionalActionPerformed(evt);
+            }
+        });
         jPanel2.add(edtCPFprofissional, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 40, 220, -1));
 
         enderço1.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
@@ -257,6 +264,11 @@ public class CadProfissional extends javax.swing.JDialog {
         Limpar.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
         Limpar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/limpar.png"))); // NOI18N
         Limpar.setText("Limpar");
+        Limpar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                LimparActionPerformed(evt);
+            }
+        });
         jPanel3.add(Limpar, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 10, -1, -1));
 
         cancelar.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
@@ -339,7 +351,20 @@ public class CadProfissional extends javax.swing.JDialog {
 
     private void cancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelarActionPerformed
         // TODO add your handling code here:
+        dispose();
     }//GEN-LAST:event_cancelarActionPerformed
+
+    private void edtCPFprofissionalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_edtCPFprofissionalActionPerformed
+        // TODO add your handling code here:
+     
+
+
+
+    }//GEN-LAST:event_edtCPFprofissionalActionPerformed
+
+    private void LimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LimparActionPerformed
+        
+    }//GEN-LAST:event_LimparActionPerformed
        
     /**
      * @param args the command line arguments
