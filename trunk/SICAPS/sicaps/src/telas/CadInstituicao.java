@@ -63,7 +63,7 @@ public class CadInstituicao extends javax.swing.JDialog {
         borda2 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         Salvar = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        limpar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tbListarInstituicao = new javax.swing.JTable();
         editar = new javax.swing.JButton();
@@ -177,10 +177,15 @@ public class CadInstituicao extends javax.swing.JDialog {
         });
         jPanel3.add(Salvar, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 10, -1, -1));
 
-        jButton2.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/limpar.png"))); // NOI18N
-        jButton2.setText("Limpar");
-        jPanel3.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 10, -1, -1));
+        limpar.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
+        limpar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/limpar.png"))); // NOI18N
+        limpar.setText("Limpar");
+        limpar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                limparActionPerformed(evt);
+            }
+        });
+        jPanel3.add(limpar, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 10, -1, -1));
 
         jPanel2.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 210, 870, 50));
 
@@ -212,7 +217,7 @@ public class CadInstituicao extends javax.swing.JDialog {
 
         editar.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
         editar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/editar.png"))); // NOI18N
-        editar.setText("Edittar");
+        editar.setText("Editar");
         editar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 editarActionPerformed(evt);
@@ -296,6 +301,7 @@ public class CadInstituicao extends javax.swing.JDialog {
         edtUF.setSelectedIndex(0);
         edtData.setText("");
         edtBairro.setText("");
+        edtTelefone.setText("");
     
         InstituicaoDAO listar = new  InstituicaoDAO();
         InstituicaoTableModal tb=new InstituicaoTableModal(listar.listar());
@@ -317,7 +323,18 @@ public class CadInstituicao extends javax.swing.JDialog {
             instituicao=instdao.pesquisaCodigo(codigo);
             edtBairro.setText(instituicao.getBairro());
             edtEndereco.setText(instituicao.getEndereco());
-            edtNome.setText(instituicao.getNomeFantasia());
+            edtNome.setText(instituicao.getNomeInstituicao());
+            edtFantasia.setText(instituicao.getNomeFantasia());
+            edtData.setText(instituicao.getData());
+            edtTelefone.setText(instituicao.getTelefone());
+            edtUF.setSelectedIndex(0);
+            //Falta num e CNES
+            
+            InstituicaoDAO pDao = new InstituicaoDAO();
+            pDao.salvar(instituicao);
+            
+            
+            
         }
         
     }//GEN-LAST:event_editarActionPerformed
@@ -343,6 +360,19 @@ public class CadInstituicao extends javax.swing.JDialog {
             }
         }
     }//GEN-LAST:event_excluirActionPerformed
+
+    private void limparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_limparActionPerformed
+        // TODO add your handling code here:
+        edtNome.setText("");
+        edtFantasia.setText("");
+        edtEndereco.setText("");
+        edtNum.setText("");
+        edtCNES.setText("");
+        edtUF.setSelectedIndex(0);
+        edtData.setText("");
+        edtBairro.setText("");
+        edtTelefone.setText("");
+    }//GEN-LAST:event_limparActionPerformed
        
     /**
      * @param args the command line arguments
@@ -399,7 +429,6 @@ public class CadInstituicao extends javax.swing.JDialog {
     private javax.swing.JComboBox edtUF;
     private javax.swing.JLabel enderço1;
     private javax.swing.JButton excluir;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel5;
@@ -407,6 +436,7 @@ public class CadInstituicao extends javax.swing.JDialog {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JButton limpar;
     private javax.swing.JLabel nome1;
     private javax.swing.JTable tbListarInstituicao;
     private javax.swing.JLabel telefone1;

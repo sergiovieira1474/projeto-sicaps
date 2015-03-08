@@ -5,9 +5,12 @@
  */
 package telas;
 
+import com.mysql.jdbc.Util;
 import javax.swing.JOptionPane;
 import triagem.TriagemAdmissao;
 import triagem.TriagemDAO;
+
+import validacao.ValidaCPF;
 
 
 
@@ -17,6 +20,8 @@ import triagem.TriagemDAO;
  * @author Elessandro
  */
 public class CadTriagemAdmissao extends javax.swing.JFrame {
+    
+    
 
     /**
      * Creates new form triagemAdmissao
@@ -115,7 +120,7 @@ public class CadTriagemAdmissao extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel18 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -191,7 +196,13 @@ public class CadTriagemAdmissao extends javax.swing.JFrame {
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
+        edtCpfPaciente.setToolTipText("");
         edtCpfPaciente.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
+        edtCpfPaciente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                edtCpfPacienteActionPerformed(evt);
+            }
+        });
         jPanel3.add(edtCpfPaciente, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 150, 160, -1));
 
         jLabel10.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
@@ -481,6 +492,9 @@ public class CadTriagemAdmissao extends javax.swing.JFrame {
      paciente.setAlturaPaciente((float) Double.parseDouble(edtAlturaPaciente.getText()));
      paciente.setEstadocivilPaciente(edtEstadoCivil.getSelectedItem().toString());
      paciente.setCPFPaciente(edtCpfPaciente.getText());
+        
+
+
      paciente.setRGPaciente(edtRgPaciente.getText());
      paciente.setDataEmissao(edtEmissaoRg.getText());
      paciente.setCorPaciente(edtCor.getSelectedItem().toString());
@@ -527,6 +541,20 @@ public class CadTriagemAdmissao extends javax.swing.JFrame {
     private void edtNCartaoSUSActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_edtNCartaoSUSActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_edtNCartaoSUSActionPerformed
+
+    private void edtCpfPacienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_edtCpfPacienteActionPerformed
+        // TODO add your handling code here:
+        if (!ValidaCPF.CPF(edtCpfPaciente.getText().toString().replaceAll("\\D*", ""))) {
+            JOptionPane.showMessageDialog(rootPane, "Este CPF não é válido, Redigite!", "ERRO", JOptionPane.ERROR_MESSAGE);
+            edtCpfPaciente.setText("");
+            if (!edtCpfPaciente.isFocusOwner()) {
+                
+                edtCpfPaciente.requestFocus();
+            }
+        } else {
+          
+        }
+    }//GEN-LAST:event_edtCpfPacienteActionPerformed
 
     /**
      * @param args the command line arguments

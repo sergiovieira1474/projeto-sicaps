@@ -39,11 +39,11 @@ public class InstituicaoTableModal extends AbstractTableModel{
         Instituicao instituicao = instituicaos.get(rowIndex);
         switch (columnIndex) {
             case 0:
-                return instituicao.getIdInstituicao();
-            case 1:
                 return instituicao.getNomeInstituicao();
-            case 2:
+            case 1:
                 return instituicao.getNomeFantasia();
+           
+                
             
     }
     return null;
