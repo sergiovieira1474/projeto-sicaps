@@ -82,18 +82,19 @@
                   <Font name="Verdana" size="14" style="0"/>
                 </Property>
                 <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                  <StringArray count="5">
-                    <StringItem index="0" value="Assistente Social"/>
-                    <StringItem index="1" value="Atendente"/>
-                    <StringItem index="2" value="Enfermeiro"/>
-                    <StringItem index="3" value="M&#xe9;dico"/>
-                    <StringItem index="4" value="Psicologo"/>
+                  <StringArray count="6">
+                    <StringItem index="0" value="Selecione o n&#xed;vel de acesso"/>
+                    <StringItem index="1" value="Assistente Social"/>
+                    <StringItem index="2" value="Atendente"/>
+                    <StringItem index="3" value="Enfermeiro"/>
+                    <StringItem index="4" value="M&#xe9;dico"/>
+                    <StringItem index="5" value="Psicologo"/>
                   </StringArray>
                 </Property>
               </Properties>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                  <AbsoluteConstraints x="560" y="330" width="190" height="-1"/>
+                  <AbsoluteConstraints x="540" y="330" width="230" height="-1"/>
                 </Constraint>
               </Constraints>
             </Component>
@@ -445,14 +446,18 @@
                   <Font name="Verdana" size="14" style="0"/>
                 </Property>
                 <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                  <StringArray count="4">
-                    <StringItem index="0" value="Solteiro"/>
-                    <StringItem index="1" value="Casado"/>
-                    <StringItem index="2" value="Divorciado"/>
-                    <StringItem index="3" value="Viuvo"/>
+                  <StringArray count="5">
+                    <StringItem index="0" value="Selecione"/>
+                    <StringItem index="1" value="Solteiro"/>
+                    <StringItem index="2" value="Casado"/>
+                    <StringItem index="3" value="Divorciado"/>
+                    <StringItem index="4" value="Viuvo"/>
                   </StringArray>
                 </Property>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="edtCivilprofissionalActionPerformed"/>
+              </Events>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
                   <AbsoluteConstraints x="140" y="160" width="120" height="-1"/>

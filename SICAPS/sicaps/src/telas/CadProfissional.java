@@ -90,8 +90,8 @@ public class CadProfissional extends javax.swing.JDialog {
         jPanel2.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 300, -1, -1));
 
         nivelprofissional.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
-        nivelprofissional.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Assistente Social", "Atendente", "Enfermeiro", "Médico", "Psicologo" }));
-        jPanel2.add(nivelprofissional, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 330, 190, -1));
+        nivelprofissional.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Selecione o nível de acesso", "Assistente Social", "Atendente", "Enfermeiro", "Médico", "Psicologo" }));
+        jPanel2.add(nivelprofissional, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 330, 230, -1));
 
         confirmarprofissional.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
         jPanel2.add(confirmarprofissional, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 360, 150, -1));
@@ -214,7 +214,12 @@ public class CadProfissional extends javax.swing.JDialog {
         jPanel2.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 120, -1, -1));
 
         edtCivilprofissional.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
-        edtCivilprofissional.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Solteiro", "Casado", "Divorciado", "Viuvo" }));
+        edtCivilprofissional.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Selecione", "Solteiro", "Casado", "Divorciado", "Viuvo" }));
+        edtCivilprofissional.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                edtCivilprofissionalActionPerformed(evt);
+            }
+        });
         jPanel2.add(edtCivilprofissional, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 160, 120, -1));
 
         try {
@@ -319,10 +324,11 @@ public class CadProfissional extends javax.swing.JDialog {
         profissional.setNumprofissional(Integer.parseInt(edtNumprofissional.getText()));
         profissional.setBairroprofissional(edtBairroprofissional.getText());
         profissional.setDataNascprofissional(edtDataprofissional.getText());
-        profissional.setCBOprofissional(edtCBOprofissional.getName());
+        profissional.setCBOprofissional(edtCBOprofissional.getText());
         profissional.setCNESprofissional(edtCNESprofissional.getText());
         profissional.setEstadocivilprofissional(edtCivilprofissional.getSelectedItem().toString());
         profissional.setTelefoneprofissional(edtTelefoneprofissional.getText());
+        profissional.setEstadoprofissional(edtUF.getSelectedItem().toString());
 
         //SALVAR PROFISSIONAL
       profissionalDAO proDao = new profissionalDAO();
@@ -364,7 +370,25 @@ public class CadProfissional extends javax.swing.JDialog {
 
     private void LimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LimparActionPerformed
         
+        edtNomeprofissional.setText("");
+        edtRGprofissional.setText("");
+        edtCPFprofissional.setText("");
+        edtEnderecoprofissional.setText("");
+        edtNumprofissional.setText("");
+        edtBairroprofissional.setText("");
+        edtDataprofissional.setText("");
+        edtCBOprofissional.setText("");
+        edtCNESprofissional.setText("");
+        edtCivilprofissional.setSelectedIndex(0);
+        edtTelefoneprofissional.setText("");
+        edtUF.setSelectedIndex(0);
+        
+        
     }//GEN-LAST:event_LimparActionPerformed
+
+    private void edtCivilprofissionalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_edtCivilprofissionalActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_edtCivilprofissionalActionPerformed
        
     /**
      * @param args the command line arguments
