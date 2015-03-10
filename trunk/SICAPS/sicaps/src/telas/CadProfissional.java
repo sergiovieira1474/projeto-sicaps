@@ -4,6 +4,7 @@
  */
 package telas;
 
+import Util.util;
 import javax.swing.JOptionPane;
 import login.Login;
 import login.LoginDAO;
@@ -19,6 +20,7 @@ public class CadProfissional extends javax.swing.JDialog {
     public CadProfissional() {
         setLocationRelativeTo(null); 
         initComponents();
+        setModal(true);
         
           
         
@@ -142,6 +144,11 @@ public class CadProfissional extends javax.swing.JDialog {
         edtCPFprofissional.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 edtCPFprofissionalActionPerformed(evt);
+            }
+        });
+        edtCPFprofissional.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                edtCPFprofissionalFocusLost(evt);
             }
         });
         jPanel2.add(edtCPFprofissional, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 40, 220, -1));
@@ -315,6 +322,10 @@ public class CadProfissional extends javax.swing.JDialog {
 
     private void SalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SalvarActionPerformed
         // TODO add your handling code here:
+        if(!edtNomeprofissional.getText().equals("")&&(!edtBairroprofissional.getText().equals(""))){
+            
+        
+        
         Profissional profissional = new Profissional();
         
         
@@ -353,6 +364,10 @@ public class CadProfissional extends javax.swing.JDialog {
       JOptionPane.showMessageDialog(edtNomeprofissional, 
                 "Novo Paciente: "+profissional.getNomeprofissional()+
                 ", Cadastrado com Sucesso!");
+        }else{
+            JOptionPane.showMessageDialog(rootPane,"Campos Obrigatorios");
+                   
+        }
         
     }//GEN-LAST:event_SalvarActionPerformed
 
@@ -363,6 +378,7 @@ public class CadProfissional extends javax.swing.JDialog {
 
     private void edtCPFprofissionalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_edtCPFprofissionalActionPerformed
         // TODO add your handling code here:
+        
      
 
 
@@ -390,6 +406,19 @@ public class CadProfissional extends javax.swing.JDialog {
     private void edtCivilprofissionalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_edtCivilprofissionalActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_edtCivilprofissionalActionPerformed
+
+    private void edtCPFprofissionalFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_edtCPFprofissionalFocusLost
+        // TODO add your handling code here:
+        if (!util.CPF(edtCPFprofissional.getText().toString().replaceAll("\\D*", ""))) {
+            JOptionPane.showMessageDialog(rootPane, "Este CPF não é válido, Redigite!", "ERRO", JOptionPane.ERROR_MESSAGE);
+            edtCPFprofissional.setText("");
+            
+            if (!edtCPFprofissional.isFocusOwner()) {
+                
+                edtCPFprofissional.requestFocus();
+            }
+        }
+    }//GEN-LAST:event_edtCPFprofissionalFocusLost
        
     /**
      * @param args the command line arguments
