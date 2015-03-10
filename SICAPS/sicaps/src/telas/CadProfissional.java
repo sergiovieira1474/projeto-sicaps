@@ -227,6 +227,7 @@ public class CadProfissional extends javax.swing.JDialog {
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
+        edtCNESprofissional.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
         jPanel2.add(edtCNESprofissional, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 120, 170, -1));
 
         try {

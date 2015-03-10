@@ -259,7 +259,7 @@ public class CadTriagemAdmissao extends javax.swing.JFrame {
         jLabel36.setText("Estado Civil:");
         jPanel3.add(jLabel36, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 110, -1, -1));
 
-        edtEscolaridade.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "--", "Item 1", "Item 2", "Item 3", "Item 4" }));
+        edtEscolaridade.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "- -", "Fundamental", "Ensino Médio", "Superior", "Outros" }));
         jPanel3.add(edtEscolaridade, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 190, 90, 25));
 
         jLabel39.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
@@ -433,6 +433,11 @@ public class CadTriagemAdmissao extends javax.swing.JFrame {
         jButton2.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/cancelar.png"))); // NOI18N
         jButton2.setText("Cancelar");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
         jPanel5.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 10, -1, -1));
 
         jPanel4.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 400, 880, 50));
@@ -555,6 +560,11 @@ public class CadTriagemAdmissao extends javax.swing.JFrame {
           
         }
     }//GEN-LAST:event_edtCpfPacienteActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        dispose();
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
