@@ -12,7 +12,7 @@ import javax.swing.ImageIcon;
  *
  * @author Elessandro
  */
-public class Principal extends javax.swing.JFrame {
+public class Principal extends javax.swing.JDialog {
 
     /**
      * Creates new form principal
@@ -20,6 +20,7 @@ public class Principal extends javax.swing.JFrame {
     public Principal() {
         initComponents();
         setLocationRelativeTo(null); 
+        setModal(true);
     }
 
     /**
@@ -48,7 +49,7 @@ public class Principal extends javax.swing.JFrame {
         profissional = new javax.swing.JLabel();
         fundo2 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 

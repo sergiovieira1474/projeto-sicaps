@@ -9,8 +9,9 @@ import com.mysql.jdbc.Util;
 import javax.swing.JOptionPane;
 import triagem.TriagemAdmissao;
 import triagem.TriagemDAO;
+import Util.util;
 
-import validacao.ValidaCPF;
+
 
 
 
@@ -197,10 +198,16 @@ public class CadTriagemAdmissao extends javax.swing.JFrame {
             ex.printStackTrace();
         }
         edtCpfPaciente.setToolTipText("");
+        edtCpfPaciente.setFocusLostBehavior(javax.swing.JFormattedTextField.REVERT);
         edtCpfPaciente.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
         edtCpfPaciente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 edtCpfPacienteActionPerformed(evt);
+            }
+        });
+        edtCpfPaciente.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                edtCpfPacienteFocusLost(evt);
             }
         });
         jPanel3.add(edtCpfPaciente, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 150, 160, -1));
@@ -548,23 +555,25 @@ public class CadTriagemAdmissao extends javax.swing.JFrame {
     }//GEN-LAST:event_edtNCartaoSUSActionPerformed
 
     private void edtCpfPacienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_edtCpfPacienteActionPerformed
-        // TODO add your handling code here:
-        if (!ValidaCPF.CPF(edtCpfPaciente.getText().toString().replaceAll("\\D*", ""))) {
-            JOptionPane.showMessageDialog(rootPane, "Este CPF não é válido, Redigite!", "ERRO", JOptionPane.ERROR_MESSAGE);
-            edtCpfPaciente.setText("");
-            if (!edtCpfPaciente.isFocusOwner()) {
-                
-                edtCpfPaciente.requestFocus();
-            }
-        } else {
-          
-        }
+      
     }//GEN-LAST:event_edtCpfPacienteActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
         dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void edtCpfPacienteFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_edtCpfPacienteFocusLost
+        if (!util.CPF(edtCpfPaciente.getText().toString().replaceAll("\\D*", ""))) {
+            JOptionPane.showMessageDialog(rootPane, "Este CPF não é válido, Redigite!", "ERRO", JOptionPane.ERROR_MESSAGE);
+            edtCpfPaciente.setText("");
+            
+            if (!edtCpfPaciente.isFocusOwner()) {
+                
+                edtCpfPaciente.requestFocus();
+            }
+        }
+    }//GEN-LAST:event_edtCpfPacienteFocusLost
 
     /**
      * @param args the command line arguments
