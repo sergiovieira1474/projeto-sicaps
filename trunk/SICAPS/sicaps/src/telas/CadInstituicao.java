@@ -15,6 +15,7 @@ import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import profissional.Profissional;
 import profissional.profissionalDAO;
+
 public class CadInstituicao extends javax.swing.JDialog {
 
     /**
@@ -26,10 +27,24 @@ public class CadInstituicao extends javax.swing.JDialog {
     public CadInstituicao() {
         setLocationRelativeTo(null);
         initComponents();
+        setModal(true);
+        
          InstituicaoDAO listar = new  InstituicaoDAO();
         InstituicaoTableModal tb=new InstituicaoTableModal(listar.listar());
         tbListarInstituicao.setModel(tb);
+        
        
+    }
+    public CadInstituicao(Instituicao instituicoes){
+        setLocationRelativeTo(null);
+        initComponents();
+        setModal(true);
+        this.instituicao=instituicoes;
+        edtNum.setText(instituicoes.getNum());
+        edtCNES.setText(instituicoes.getCnes());
+        edtTelefone.setText(instituicoes.getTelefone());
+        SimpleDateFormat sf = new SimpleDateFormat("dd/MM/yyyy");
+        edtData.setText(sf.format(instituicao.getData()));
     }
 
     /**
@@ -143,7 +158,7 @@ public class CadInstituicao extends javax.swing.JDialog {
         jPanel2.add(edtUF, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 120, -1, -1));
 
         jLabel5.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
-        jLabel5.setText("Fundadação.:");
+        jLabel5.setText("Data.:");
         jPanel2.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 120, -1, -1));
 
         try {
@@ -268,19 +283,19 @@ public class CadInstituicao extends javax.swing.JDialog {
        instituicao.setNomeInstituicao(edtNome.getText());
        instituicao.setNomeFantasia(edtFantasia.getText());  
        instituicao.setEndereco(edtEndereco.getText());
-       instituicao.setNum(Integer.parseInt(edtNum.getText()));
+       instituicao.setNum(edtNum.getText());
        instituicao.setBairro(edtBairro.getText());
-       instituicao.setCnes(Integer.parseInt(edtCNES.getText()));
+       instituicao.setCnes(edtCNES.getText());
        instituicao.setEstado(edtUF.getSelectedItem().toString());
-       instituicao.setFundacao(edtData.getText());
+     
        instituicao.setTelefone(edtTelefone.getText());
       
-        try {
+       try {
                 if (!edtData.getText().replaceAll("/", "").isEmpty()) {
                     DateFormat fmt = new SimpleDateFormat("dd/MM/yyyy");
                     java.util.Date data;
                     data = new java.util.Date(fmt.parse(edtData.getText()).getTime());
-                    //pa.setNasc(data); verifica Problema......
+                    instituicao.setData(data);
                 }
             } catch (ParseException ex) {
                 Logger.getLogger(CadInstituicao.class.getName()).log(Level.SEVERE, null, ex);
@@ -325,13 +340,14 @@ public class CadInstituicao extends javax.swing.JDialog {
             edtEndereco.setText(instituicao.getEndereco());
             edtNome.setText(instituicao.getNomeInstituicao());
             edtFantasia.setText(instituicao.getNomeFantasia());
-            edtData.setText(instituicao.getData());
+            edtUF.setSelectedItem(instituicao.getEstado());
+            edtNum.setText(instituicao.getNum());
+            edtCNES.setText(instituicao.getCnes());
             edtTelefone.setText(instituicao.getTelefone());
-            edtUF.setSelectedIndex(0);
-            //Falta num e CNES
+            SimpleDateFormat sf = new SimpleDateFormat("dd/MM/yyyy");
+            edtData.setText(sf.format(instituicao.getData()));
             
-            InstituicaoDAO pDao = new InstituicaoDAO();
-            pDao.salvar(instituicao);
+            
             
             
             
