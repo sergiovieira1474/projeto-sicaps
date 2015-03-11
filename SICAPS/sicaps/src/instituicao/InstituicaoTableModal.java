@@ -15,7 +15,7 @@ import javax.swing.table.AbstractTableModel;
  */
 public class InstituicaoTableModal extends AbstractTableModel{
     
-    private String[] institucaoColunas = {"Nome","Nome Fantasia"};
+    private String[] institucaoColunas = {"Id","Nome","Nome Fantasia"};
     List<Instituicao> instituicaos = new ArrayList<Instituicao>();
     
     public InstituicaoTableModal(List<Instituicao> instituicao) {
@@ -39,10 +39,11 @@ public class InstituicaoTableModal extends AbstractTableModel{
         Instituicao instituicao = instituicaos.get(rowIndex);
         switch (columnIndex) {
             case 0:
-                return instituicao.getNomeInstituicao();
+                return instituicao.getIdInstituicao();
             case 1:
+                return instituicao.getNomeInstituicao();
+            case 2:
                 return instituicao.getNomeFantasia();
-           
                 
             
     }

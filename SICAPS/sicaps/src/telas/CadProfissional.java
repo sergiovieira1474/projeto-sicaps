@@ -210,6 +210,11 @@ public class CadProfissional extends javax.swing.JDialog {
             ex.printStackTrace();
         }
         edtDataprofissional.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
+        edtDataprofissional.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                edtDataprofissionalFocusLost(evt);
+            }
+        });
         jPanel2.add(edtDataprofissional, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 120, 160, -1));
 
         edtUF.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
@@ -419,6 +424,19 @@ public class CadProfissional extends javax.swing.JDialog {
             }
         }
     }//GEN-LAST:event_edtCPFprofissionalFocusLost
+
+    private void edtDataprofissionalFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_edtDataprofissionalFocusLost
+        // TODO add your handling code here:
+        if (!util.dataValida(edtDataprofissional.getText().toString().replaceAll("\\D*", ""))) {
+            JOptionPane.showMessageDialog(rootPane, "Data inválida!", "ERRO", JOptionPane.ERROR_MESSAGE);
+            edtDataprofissional.setText("");
+            
+            if (!edtDataprofissional.isFocusOwner()) {
+                
+                edtDataprofissional.requestFocus();
+            }
+        }
+    }//GEN-LAST:event_edtDataprofissionalFocusLost
        
     /**
      * @param args the command line arguments

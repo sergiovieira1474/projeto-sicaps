@@ -20,7 +20,7 @@ import Util.util;
  *
  * @author Elessandro
  */
-public class CadTriagemAdmissao extends javax.swing.JFrame {
+public class CadTriagemAdmissao extends javax.swing.JDialog {
     
     
 
@@ -29,6 +29,8 @@ public class CadTriagemAdmissao extends javax.swing.JFrame {
      */
     public CadTriagemAdmissao() {
         initComponents();
+        setModal(true);
+        
     }
 
     /**
@@ -185,6 +187,11 @@ public class CadTriagemAdmissao extends javax.swing.JFrame {
         }
         edtDataNascPaciente.setToolTipText("");
         edtDataNascPaciente.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
+        edtDataNascPaciente.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                edtDataNascPacienteFocusLost(evt);
+            }
+        });
         jPanel3.add(edtDataNascPaciente, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 110, 120, -1));
 
         jLabel9.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
@@ -266,6 +273,7 @@ public class CadTriagemAdmissao extends javax.swing.JFrame {
         jLabel36.setText("Estado Civil:");
         jPanel3.add(jLabel36, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 110, -1, -1));
 
+        edtEscolaridade.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
         edtEscolaridade.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "- -", "Fundamental", "Ensino Médio", "Superior", "Outros" }));
         jPanel3.add(edtEscolaridade, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 190, 90, 25));
 
@@ -574,6 +582,19 @@ public class CadTriagemAdmissao extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_edtCpfPacienteFocusLost
+
+    private void edtDataNascPacienteFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_edtDataNascPacienteFocusLost
+        // TODO add your handling code here:
+        if (!util.dataValida(edtDataNascPaciente.getText().toString().replaceAll("\\D*", ""))) {
+            JOptionPane.showMessageDialog(rootPane, "Data inválida!", "ERRO", JOptionPane.ERROR_MESSAGE);
+            edtDataNascPaciente.setText("");
+            
+            if (!edtDataNascPaciente.isFocusOwner()) {
+                
+                edtDataNascPaciente.requestFocus();
+            }
+        }
+    }//GEN-LAST:event_edtDataNascPacienteFocusLost
 
     /**
      * @param args the command line arguments

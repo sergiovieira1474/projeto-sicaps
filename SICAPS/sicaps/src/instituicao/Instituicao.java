@@ -5,11 +5,14 @@
  */
 package instituicao;
 
+import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 @Entity
 @Table(name="instituicao")
@@ -26,17 +29,18 @@ public class Instituicao {
     private String nomeFantasia;
     
     private String endereco;
-    
-    private int num;
+    @Column
+    private String num;
     
     private String bairro;
     
-    private String fundacao;
-    
-    private int cnes;
+    @Temporal(TemporalType.DATE)
+    private Date data;
+    @Column
+    private String cnes;
     
     private String estado;
-    
+    @Column
     private String telefone;
 
     /**
@@ -98,14 +102,14 @@ public class Instituicao {
     /**
      * @return the num
      */
-    public int getNum() {
+    public String getNum() {
         return num;
     }
 
     /**
      * @param num the num to set
      */
-    public void setNum(int num) {
+    public void setNum(String num) {
         this.num = num;
     }
 
@@ -123,31 +127,18 @@ public class Instituicao {
         this.bairro = bairro;
     }
 
-    /**
-     * @return the fundacao
-     */
-    public String getFundacao() {
-        return fundacao;
-    }
-
-    /**
-     * @param fundacao the fundacao to set
-     */
-    public void setFundacao(String fundacao) {
-        this.fundacao = fundacao;
-    }
-
+  
     /**
      * @return the cnes
      */
-    public int getCnes() {
+    public String getCnes() {
         return cnes;
     }
 
     /**
      * @param cnes the cnes to set
      */
-    public void setCnes(int cnes) {
+    public void setCnes(String cnes) {
         this.cnes = cnes;
     }
 
@@ -179,9 +170,22 @@ public class Instituicao {
         this.telefone = telefone;
     }
 
-    public String getData() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    /**
+     * @return the data
+     */
+    public Date getData() {
+        return data;
     }
+
+    /**
+     * @param data the data to set
+     */
+    public void setData(Date data) {
+        this.data = data;
+    }
+
+
+
     
     
     
