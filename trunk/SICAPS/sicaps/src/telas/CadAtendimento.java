@@ -47,10 +47,12 @@ public class CadAtendimento extends javax.swing.JFrame {
         jPanel4 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         TBListarpaciente = new javax.swing.JTable();
+        jTextField1 = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         limpar = new javax.swing.JButton();
         salvar = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
         excluir = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -90,6 +92,9 @@ public class CadAtendimento extends javax.swing.JFrame {
 
         jPanel4.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 260, 710, 220));
 
+        jTextField1.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
+        jPanel4.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 80, 230, -1));
+
         jLabel8.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
         jLabel8.setText("Listar Pacientes");
         jPanel4.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 230, -1, -1));
@@ -122,6 +127,10 @@ public class CadAtendimento extends javax.swing.JFrame {
         salvar.setBounds(630, 10, 109, 33);
 
         jPanel4.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 160, 880, 50));
+
+        jLabel1.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
+        jLabel1.setText("Nome:");
+        jPanel4.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 80, -1, -1));
 
         excluir.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
         excluir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/excluir.png"))); // NOI18N
@@ -250,6 +259,7 @@ public class CadAtendimento extends javax.swing.JFrame {
     private javax.swing.JFormattedTextField edtCNS;
     private javax.swing.JButton excluir;
     private javax.swing.JLabel fundo2;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel8;
@@ -257,6 +267,7 @@ public class CadAtendimento extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTextField jTextField1;
     private javax.swing.JButton limpar;
     private javax.swing.JButton salvar;
     // End of variables declaration//GEN-END:variables
