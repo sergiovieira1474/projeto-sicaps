@@ -61,7 +61,6 @@ public class CadTriagemAdmissao extends javax.swing.JDialog {
         edtNomePaciente = new javax.swing.JTextField();
         edtDataNascPaciente = new javax.swing.JFormattedTextField();
         jLabel9 = new javax.swing.JLabel();
-        edtCpfPaciente = new javax.swing.JFormattedTextField();
         jLabel10 = new javax.swing.JLabel();
         edtRgPaciente = new javax.swing.JTextField();
         jLabel11 = new javax.swing.JLabel();
@@ -71,6 +70,7 @@ public class CadTriagemAdmissao extends javax.swing.JDialog {
         jLabel27 = new javax.swing.JLabel();
         jLabel28 = new javax.swing.JLabel();
         edtReligiao = new javax.swing.JComboBox();
+        edtCpfPaciente = new javax.swing.JFormattedTextField();
         jLabel35 = new javax.swing.JLabel();
         edtNCartaoSUS = new javax.swing.JTextField();
         jLabel36 = new javax.swing.JLabel();
@@ -187,6 +187,11 @@ public class CadTriagemAdmissao extends javax.swing.JDialog {
         }
         edtDataNascPaciente.setToolTipText("");
         edtDataNascPaciente.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
+        edtDataNascPaciente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                edtDataNascPacienteActionPerformed(evt);
+            }
+        });
         edtDataNascPaciente.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
                 edtDataNascPacienteFocusLost(evt);
@@ -198,26 +203,6 @@ public class CadTriagemAdmissao extends javax.swing.JDialog {
         jLabel9.setText("CPF:");
         jLabel9.setToolTipText("");
         jPanel3.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 150, -1, -1));
-
-        try {
-            edtCpfPaciente.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###.###.###-##")));
-        } catch (java.text.ParseException ex) {
-            ex.printStackTrace();
-        }
-        edtCpfPaciente.setToolTipText("");
-        edtCpfPaciente.setFocusLostBehavior(javax.swing.JFormattedTextField.REVERT);
-        edtCpfPaciente.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
-        edtCpfPaciente.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                edtCpfPacienteActionPerformed(evt);
-            }
-        });
-        edtCpfPaciente.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                edtCpfPacienteFocusLost(evt);
-            }
-        });
-        jPanel3.add(edtCpfPaciente, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 150, 160, -1));
 
         jLabel10.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
         jLabel10.setText("RG:");
@@ -256,6 +241,19 @@ public class CadTriagemAdmissao extends javax.swing.JDialog {
         edtReligiao.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "--", "Católico", "Evangelico", "Outro" }));
         edtReligiao.setToolTipText("");
         jPanel3.add(edtReligiao, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 190, -1, -1));
+
+        try {
+            edtCpfPaciente.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###.###.###-##")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+        edtCpfPaciente.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
+        edtCpfPaciente.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                edtCpfPacienteFocusLost(evt);
+            }
+        });
+        jPanel3.add(edtCpfPaciente, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 150, 140, -1));
 
         jLabel35.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
         jLabel35.setText("CNS:");
@@ -511,7 +509,7 @@ public class CadTriagemAdmissao extends javax.swing.JDialog {
      paciente.setPesoPaciente((float)Double.parseDouble(edtPesoPaciente.getText()));
      paciente.setAlturaPaciente((float) Double.parseDouble(edtAlturaPaciente.getText()));
      paciente.setEstadocivilPaciente(edtEstadoCivil.getSelectedItem().toString());
-     paciente.setCPFPaciente(edtCpfPaciente.getText());
+     paciente.setCPFPaciente(jLabel3.getText());
         
 
 
@@ -549,8 +547,8 @@ public class CadTriagemAdmissao extends javax.swing.JDialog {
      
      
      
-     TriagemDAO triDao = new TriagemDAO();
-      triDao.salvar(paciente);
+     TriagemDAO tri = new TriagemDAO();
+      tri.salvar(paciente);
       JOptionPane.showMessageDialog(edtNomePaciente, 
                 "Novo Paciente: "+paciente.getNomePaciente()+
                 ", Cadastrado com Sucesso!");
@@ -562,30 +560,14 @@ public class CadTriagemAdmissao extends javax.swing.JDialog {
         // TODO add your handling code here:
     }//GEN-LAST:event_edtNCartaoSUSActionPerformed
 
-    private void edtCpfPacienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_edtCpfPacienteActionPerformed
-      
-    }//GEN-LAST:event_edtCpfPacienteActionPerformed
-
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
         dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
 
-    private void edtCpfPacienteFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_edtCpfPacienteFocusLost
-        if (!util.CPF(edtCpfPaciente.getText().toString().replaceAll("\\D*", ""))) {
-            JOptionPane.showMessageDialog(rootPane, "Este CPF não é válido, Redigite!", "ERRO", JOptionPane.ERROR_MESSAGE);
-            edtCpfPaciente.setText("");
-            
-            if (!edtCpfPaciente.isFocusOwner()) {
-                
-                edtCpfPaciente.requestFocus();
-            }
-        }
-    }//GEN-LAST:event_edtCpfPacienteFocusLost
-
     private void edtDataNascPacienteFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_edtDataNascPacienteFocusLost
         // TODO add your handling code here:
-        if (!util.dataValida(edtDataNascPaciente.getText().toString().replaceAll("\\D*", ""))) {
+        if (!util.dataValida(edtDataNascPaciente.getText().toString())) {
             JOptionPane.showMessageDialog(rootPane, "Data inválida!", "ERRO", JOptionPane.ERROR_MESSAGE);
             edtDataNascPaciente.setText("");
             
@@ -595,6 +577,23 @@ public class CadTriagemAdmissao extends javax.swing.JDialog {
             }
         }
     }//GEN-LAST:event_edtDataNascPacienteFocusLost
+
+    private void edtDataNascPacienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_edtDataNascPacienteActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_edtDataNascPacienteActionPerformed
+
+    private void edtCpfPacienteFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_edtCpfPacienteFocusLost
+        // TODO add your handling code here:
+           if (!util.CPF(edtCpfPaciente.getText().toString().replaceAll("\\D*", ""))) {
+            JOptionPane.showMessageDialog(rootPane, "Este CPF não é válido, Redigite!", "ERRO", JOptionPane.ERROR_MESSAGE);
+            edtCpfPaciente.setText("");
+
+            if (!edtCpfPaciente.isFocusOwner()) {
+
+                edtCpfPaciente.requestFocus();
+            }
+        }
+    }//GEN-LAST:event_edtCpfPacienteFocusLost
 
     /**
      * @param args the command line arguments

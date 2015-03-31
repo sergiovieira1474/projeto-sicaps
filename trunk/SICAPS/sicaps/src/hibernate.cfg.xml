@@ -16,6 +16,6 @@
     <mapping class="profissional.Profissional"/>
     <mapping class="triagem.TriagemAdmissao"/>
     <mapping class="instituicao.Instituicao"/>
-    
+    <mapping class="atendimento.Atendimento"/>    
   </session-factory>
 </hibernate-configuration>
