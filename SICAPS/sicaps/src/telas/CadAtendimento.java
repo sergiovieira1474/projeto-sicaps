@@ -4,22 +4,21 @@
  */
 package telas;
 
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import atendimento.Paciente;
-import atendimento.PacienteDAO;
+import atendimento.AtendimentoDAO;
+import atendimento.AtendimentoTableModal;
 import javax.swing.JOptionPane;
-import atendimento.PacienteTableModal;
+import triagem.TriagemAdmissao;
+import triagem.TriagemDAO;
 
 /**
  *
  * @author Elessandro
  */
 public class CadAtendimento extends javax.swing.JFrame {
-
+    TriagemAdmissao pesquisaCNS = new TriagemAdmissao();
+    boolean cadastrar;
+    TriagemAdmissao triagem = new TriagemAdmissao();
+    
     /**
      * Creates new form novoPaciente
      */
@@ -27,8 +26,8 @@ public class CadAtendimento extends javax.swing.JFrame {
         initComponents();
         setLocationRelativeTo(null); 
         
-        PacienteDAO dao = new PacienteDAO();
-        PacienteTableModal atm = new PacienteTableModal(dao.listar());
+        AtendimentoDAO dao = new AtendimentoDAO();
+        AtendimentoTableModal atm = new AtendimentoTableModal(dao.listar());
         TBListarpaciente.setModel(atm);
         
     }
@@ -47,17 +46,23 @@ public class CadAtendimento extends javax.swing.JFrame {
         jPanel4 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         TBListarpaciente = new javax.swing.JTable();
-        jTextField1 = new javax.swing.JTextField();
+        edtNomePaciente = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         limpar = new javax.swing.JButton();
         salvar = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
+        edtEndereco = new javax.swing.JTextField();
+        edtCNS = new javax.swing.JFormattedTextField();
         excluir = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        edtCNS = new javax.swing.JFormattedTextField();
         editar = new javax.swing.JButton();
+        edtNumero = new javax.swing.JTextField();
+        jLabel6 = new javax.swing.JLabel();
+        jFormattedTextField1 = new javax.swing.JFormattedTextField();
         fundo2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -92,12 +97,21 @@ public class CadAtendimento extends javax.swing.JFrame {
 
         jPanel4.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 260, 710, 220));
 
-        jTextField1.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
-        jPanel4.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 80, 230, -1));
+        edtNomePaciente.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
+        edtNomePaciente.setEnabled(false);
+        jPanel4.add(edtNomePaciente, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 80, 230, -1));
 
         jLabel8.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
         jLabel8.setText("Listar Pacientes");
         jPanel4.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 230, -1, -1));
+
+        jLabel4.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
+        jLabel4.setText("Endereço:");
+        jPanel4.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 80, -1, -1));
+
+        jLabel5.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
+        jLabel5.setText("Nº");
+        jPanel4.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 80, -1, -1));
 
         jPanel3.setBackground(java.awt.SystemColor.activeCaption);
         jPanel3.setLayout(null);
@@ -117,7 +131,7 @@ public class CadAtendimento extends javax.swing.JFrame {
         salvar.setBackground(new java.awt.Color(255, 255, 255));
         salvar.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
         salvar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/salvar.png"))); // NOI18N
-        salvar.setText("Salvar");
+        salvar.setText("Incluir");
         salvar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 salvarActionPerformed(evt);
@@ -131,6 +145,24 @@ public class CadAtendimento extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
         jLabel1.setText("Nome:");
         jPanel4.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 80, -1, -1));
+
+        edtEndereco.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
+        edtEndereco.setEnabled(false);
+        jPanel4.add(edtEndereco, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 80, 280, -1));
+
+        try {
+            edtCNS.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("################")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+        edtCNS.setFocusLostBehavior(javax.swing.JFormattedTextField.PERSIST);
+        edtCNS.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
+        edtCNS.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                edtCNSFocusLost(evt);
+            }
+        });
+        jPanel4.add(edtCNS, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 30, 230, 25));
 
         excluir.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
         excluir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/excluir.png"))); // NOI18N
@@ -148,16 +180,8 @@ public class CadAtendimento extends javax.swing.JFrame {
 
         jLabel2.setBackground(new java.awt.Color(255, 255, 255));
         jLabel2.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
-        jLabel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Cadastrar Paciente", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Verdana", 1, 14))); // NOI18N
-        jPanel4.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 0, 830, 120));
-
-        try {
-            edtCNS.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("#################")));
-        } catch (java.text.ParseException ex) {
-            ex.printStackTrace();
-        }
-        edtCNS.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
-        jPanel4.add(edtCNS, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 30, 230, 25));
+        jLabel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Atendimento do Paciente", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Verdana", 1, 14))); // NOI18N
+        jPanel4.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 0, 850, 150));
 
         editar.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
         editar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/editar.png"))); // NOI18N
@@ -168,6 +192,17 @@ public class CadAtendimento extends javax.swing.JFrame {
             }
         });
         jPanel4.add(editar, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 300, 110, 40));
+
+        edtNumero.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
+        edtNumero.setEnabled(false);
+        jPanel4.add(edtNumero, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 80, 60, -1));
+
+        jLabel6.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
+        jLabel6.setText("Data:");
+        jPanel4.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 30, -1, -1));
+
+        jFormattedTextField1.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
+        jPanel4.add(jFormattedTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 30, 130, -1));
 
         jPanel1.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 120, 880, 510));
 
@@ -205,6 +240,30 @@ public class CadAtendimento extends javax.swing.JFrame {
         // TODO add your handling code here:
         
     }//GEN-LAST:event_limparActionPerformed
+
+    private void edtCNSFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_edtCNSFocusLost
+     if (!edtCNS.getText().replaceAll("//D*", "").isEmpty()){
+         TriagemDAO dao = new TriagemDAO();
+         pesquisaCNS = dao.pesquisaCartaoSUS(edtCNS.getText());
+         
+         if (pesquisaCNS!=null){
+             cadastrar= true;
+             edtCNS.setText(pesquisaCNS.getCNSPaciente().toString());
+             edtNomePaciente.setText(pesquisaCNS.getNomePaciente().toString());
+             edtEndereco.setText(pesquisaCNS.getEnderecopaciente().toString());
+             edtNumero.setText(String.valueOf(pesquisaCNS.getNumpaciente()).toString());
+         }else{
+         if (JOptionPane.showConfirmDialog(rootPane, "Paciente não cadastrado! Deseja cadastrá-lo.",
+                 "Mensagem",JOptionPane.WARNING_MESSAGE)==JOptionPane.YES_OPTION){
+             CadTriagemAdmissao p = new CadTriagemAdmissao();
+             p.setVisible(true);
+             
+         }
+     }
+     }   
+        
+        
+    }//GEN-LAST:event_edtCNSFocusLost
       
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -257,17 +316,23 @@ public class CadAtendimento extends javax.swing.JFrame {
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JButton editar;
     private javax.swing.JFormattedTextField edtCNS;
+    private javax.swing.JTextField edtEndereco;
+    private javax.swing.JTextField edtNomePaciente;
+    private javax.swing.JTextField edtNumero;
     private javax.swing.JButton excluir;
     private javax.swing.JLabel fundo2;
+    private javax.swing.JFormattedTextField jFormattedTextField1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JButton limpar;
     private javax.swing.JButton salvar;
     // End of variables declaration//GEN-END:variables

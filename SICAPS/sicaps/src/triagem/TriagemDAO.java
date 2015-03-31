@@ -13,7 +13,7 @@ import org.hibernate.Transaction;
 import org.hibernate.criterion.MatchMode;
 import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
-import atendimento.Paciente;
+import atendimento.Atendimento;
 
 /**
  *
@@ -50,7 +50,7 @@ public class TriagemDAO {
     public List<TriagemAdmissao> listar() {
         sessao = HibernateUtil.getSessionFactory().openSession();
         transacao = sessao.beginTransaction();
-        Criteria criteria = sessao.createCriteria(Paciente.class);
+        Criteria criteria = sessao.createCriteria(Atendimento.class);
         List<TriagemAdmissao> triagem = criteria.list();
         return triagem;
 
@@ -59,7 +59,7 @@ public class TriagemDAO {
     public List<TriagemAdmissao> pesquisaNome(String nome) {
         sessao = HibernateUtil.getSessionFactory().openSession();
         transacao = sessao.beginTransaction();
-        Criteria criteria = sessao.createCriteria(Paciente.class);
+        Criteria criteria = sessao.createCriteria(Atendimento.class);
         criteria.add(Restrictions.like("nome", nome, MatchMode.ANYWHERE));
         criteria.addOrder(Order.asc("nome"));
         List<TriagemAdmissao> triagem = criteria.list();
@@ -69,7 +69,7 @@ public class TriagemDAO {
         sessao = HibernateUtil.getSessionFactory().openSession();
         transacao = sessao.beginTransaction();
         TriagemAdmissao triagem
-                = (TriagemAdmissao) sessao.createCriteria(TriagemAdmissao.class).add(Restrictions.eq("cartaosus", Sus)).uniqueResult();
+                = (TriagemAdmissao) sessao.createCriteria(TriagemAdmissao.class).add(Restrictions.eq("CNSPaciente", Sus)).uniqueResult();
         return triagem;
     }
 }

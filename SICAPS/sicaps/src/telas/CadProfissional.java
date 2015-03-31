@@ -210,6 +210,11 @@ public class CadProfissional extends javax.swing.JDialog {
             ex.printStackTrace();
         }
         edtDataprofissional.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
+        edtDataprofissional.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                edtDataprofissionalActionPerformed(evt);
+            }
+        });
         edtDataprofissional.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
                 edtDataprofissionalFocusLost(evt);
@@ -367,13 +372,28 @@ public class CadProfissional extends javax.swing.JDialog {
       
        
       JOptionPane.showMessageDialog(edtNomeprofissional, 
-                "Novo Paciente: "+profissional.getNomeprofissional()+
+                "Novo Profissional: "+profissional.getNomeprofissional()+
                 ", Cadastrado com Sucesso!");
         }else{
             JOptionPane.showMessageDialog(rootPane,"Campos Obrigatorios");
                    
         }
-        
+         edtNomeprofissional.setText("");
+        edtRGprofissional.setText("");
+        edtCPFprofissional.setText("");
+        edtEnderecoprofissional.setText("");
+        edtNumprofissional.setText("");
+        edtBairroprofissional.setText("");
+        edtDataprofissional.setText("");
+        edtCBOprofissional.setText("");
+        edtCNESprofissional.setText("");
+        edtCivilprofissional.setSelectedIndex(0);
+        edtTelefoneprofissional.setText("");
+        edtUF.setSelectedIndex(0);
+        loginprofissional.setText("");
+        senhaprofissional.setText("");
+        confirmarprofissional.setText("");
+        nivelprofissional.setSelectedIndex(0);
     }//GEN-LAST:event_SalvarActionPerformed
 
     private void cancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelarActionPerformed
@@ -427,7 +447,7 @@ public class CadProfissional extends javax.swing.JDialog {
 
     private void edtDataprofissionalFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_edtDataprofissionalFocusLost
         // TODO add your handling code here:
-        if (!util.dataValida(edtDataprofissional.getText().toString().replaceAll("\\D*", ""))) {
+        if (!util.dataValida(edtDataprofissional.getText().toString())) {
             JOptionPane.showMessageDialog(rootPane, "Data inválida!", "ERRO", JOptionPane.ERROR_MESSAGE);
             edtDataprofissional.setText("");
             
@@ -437,6 +457,10 @@ public class CadProfissional extends javax.swing.JDialog {
             }
         }
     }//GEN-LAST:event_edtDataprofissionalFocusLost
+
+    private void edtDataprofissionalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_edtDataprofissionalActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_edtDataprofissionalActionPerformed
        
     /**
      * @param args the command line arguments

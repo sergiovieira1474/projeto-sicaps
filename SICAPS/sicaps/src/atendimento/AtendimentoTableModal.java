@@ -13,13 +13,13 @@ import javax.swing.table.AbstractTableModel;
  *
  * @author henri
  */
-public class PacienteTableModal extends AbstractTableModel{
+public class AtendimentoTableModal extends AbstractTableModel{
     
     
-    private String[] pacienteColunas = {"Codigo", "Nome", "CPF", "Cartao do SUS"};
-    List<Paciente> pacientes = new ArrayList<Paciente>();
+    private String[] pacienteColunas = {"Codigo", "Nome", "Cartao do SUS"};
+    List<Atendimento> pacientes = new ArrayList<Atendimento>();
 
-    public PacienteTableModal(List<Paciente> paciente) {
+    public AtendimentoTableModal(List<Atendimento> paciente) {
         this.pacientes.clear();
         this.pacientes.addAll(paciente);
     }
@@ -36,16 +36,14 @@ public class PacienteTableModal extends AbstractTableModel{
 
     @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
-        Paciente paciente = pacientes.get(rowIndex);
+        Atendimento paciente = pacientes.get(rowIndex);
         switch (columnIndex) {
             case 0:
                 return paciente.getIdPaciente();
             case 1:
-                return paciente.getNomePeciente();
+                return paciente.getPaciente().getNomePaciente();
             case 2:
-                return paciente.getCPF();
-            case 3:
-                return paciente.getCartaoSUS();
+                return paciente.getPaciente().getCNSPaciente();
         }
         return null;
     }
@@ -58,9 +56,7 @@ public class PacienteTableModal extends AbstractTableModel{
                 return pacienteColunas[1];
             case 2:
                 return pacienteColunas[2];
-            case 3:
-                return pacienteColunas[3];
-
+            
         }
         return null;
     }
